@@ -25,9 +25,13 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .padding()
                 
-                Text("This is a weather app")
-                    .font(.title)
+                Text("This is a weather app for your daily use ")
+                    .font(.system( size: 18,weight: .medium,design: .default))//styling font
+                    .foregroundColor(.white)//text color
+                    .background(Color.clear)//background color
+                    //.frame(width: 60,height: 10)// frame for this text
                     .padding()
+
             }
         }
     }
