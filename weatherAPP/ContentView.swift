@@ -24,6 +24,7 @@ struct ContentView: View {
                 Text("Welcome")
                     .font(.largeTitle)
                     .padding()
+                //Spacer()//it fill the entire space(modifier)
                 
                 Text("This is a weather app for your daily use ")
                     .font(.system( size: 18,weight: .medium,design: .default))//styling font
@@ -31,6 +32,22 @@ struct ContentView: View {
                     .background(Color.clear)//background color
                     //.frame(width: 60,height: 10)// frame for this text
                     .padding()
+                
+                
+                //spacing is to crate space between each element inside the stack
+                VStack(spacing: 10){
+                    Image(systemName: "cloud.sun.fill")//we brought symbol from sfsymbol
+                        .renderingMode(.original)// to bring multi color we use redering
+                        .resizable()//to apply the size to fill full screen
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80,height: 80)
+                    
+                    Text("2 deg")
+                        .font(.system(size: 25,weight:.medium))
+                        .foregroundColor(.white)
+                }
+                Spacer()
+                    
 
             }
         }
