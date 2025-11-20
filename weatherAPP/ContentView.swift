@@ -13,7 +13,11 @@ struct ContentView: View {
             //Color(.blue).edgesIgnoringSafeArea(.all)
             
             LinearGradient(
-                gradient: Gradient(colors: [ Color.red, Color.blue, Color.yellow,.white]),// to add colors
+                gradient: Gradient(colors: [ Color.red,
+                                             Color.blue,
+                                             //Color("lightBlue"), we can create custom color in asset and use it here
+                                             Color.yellow,
+                                             .white]),// to add colors
                 startPoint: .leading,// start left
                 endPoint: .trailing// to right
             )
@@ -42,12 +46,52 @@ struct ContentView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 80,height: 80)
                     
-                    Text("2 deg")
+                    Text("2°C")
                         .font(.system(size: 25,weight:.medium))
                         .foregroundColor(.white)
                 }
                 Spacer()
+
+                HStack(spacing: 12){
                     
+                    // time 1
+                    WeatherDayView(
+                        dayOfWeek: "Wed",
+                        imageName: "cloud.sun.fill",
+                        temperature: 4
+                    )
+                    
+                    // time 2
+                    WeatherDayView(
+                        dayOfWeek: "Thur",
+                        imageName: "sun.max.fill",
+                        temperature: 2
+                    )
+                    
+                    // time 3
+                    WeatherDayView(
+                        dayOfWeek: "Fri",
+                        imageName: "wind.snow",
+                        temperature: 7
+                    )
+                    
+                    // time 3
+                    WeatherDayView(
+                        dayOfWeek: "Sat",
+                        imageName: "cloud.sun.fill",
+                        temperature: 7
+                    )
+                    
+                    // time 4
+                    WeatherDayView(
+                        dayOfWeek: "Sun",
+                        imageName: "snow",
+                        temperature: -1
+                    )
+
+
+                }
+                Spacer()
 
             }
         }
@@ -57,3 +101,29 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+// to resuse this in many times we make it extractsubview
+struct WeatherDayView: View {
+    var dayOfWeek: String
+    var imageName: String
+    var temperature: Int
+    
+    var body: some View {
+        VStack {
+            Text("\(dayOfWeek)")
+                .font(.system(size: 16, weight: .medium, design: .default))
+                .foregroundStyle(.white)
+            
+            Image(systemName: "\(imageName)") // we brought symbol from SF Symbols
+                .renderingMode(.original)        // to bring multi color we use rendering
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 50, height: 20)
+            
+            Text("\(temperature)°C")
+                .font(.system(size: 15, weight: .medium))
+                .foregroundColor(.white)
+        }
+    }
+}
+
