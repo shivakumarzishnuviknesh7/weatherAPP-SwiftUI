@@ -9,13 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            //Color(.blue).edgesIgnoringSafeArea(.all)
+            
+            LinearGradient(
+                gradient: Gradient(colors: [ Color.red, Color.blue, Color.yellow,.white]),// to add colors 
+                startPoint: .leading,// start left
+                endPoint: .trailing// to right
+            )
+            .edgesIgnoringSafeArea(.all)//Ignore the safe area and draw this view all the way to the very edges of the screen.
         }
-        .padding()
     }
 }
 
