@@ -16,26 +16,14 @@ struct ContentView: View {
             //all elements are view in swift
             
             VStack {
+                
                 Text("Welcome")
                     .font(.largeTitle)
                     .padding()
                 //Spacer()//it fill the entire space(modifier)
                 
                 cityTextView(cityNAme: "Hannover,Deutschland")
-                
-                //spacing is to crate space between each element inside the stack
-                VStack(spacing: 10){
-                    Image(systemName: "cloud.sun.fill")//we brought symbol from sfsymbol
-                        .renderingMode(.original)// to bring multi color we use redering
-                        .resizable()//to apply the size to fill full screen
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80,height: 80)
-                    
-                    Text("2°C")
-                        .font(.system(size: 25,weight:.medium))
-                        .foregroundColor(.white)
-                }
-                Spacer()
+                MainWeatherStatusView(imagename: "cloud.sun.fill", temperature: "2")
 
                 HStack(spacing: 12){
                     
@@ -81,11 +69,8 @@ struct ContentView: View {
                 Button{
                     print("tapped")// logic to happen after pressing button
                 }label: {
-                    Text("change day time")// name of button
-                        .frame(width: 200,height: 50)
-                        .background(Color.white)
-                        .font(.system(size: 20,weight: .bold,design: .default))
-                        .cornerRadius(10)// button corner
+                    //button
+                    WeatherButton(title: "Change day time",textColor: Color("lightBlue"), backgroundColor: .white)
                 }
                 
                 Spacer()
@@ -163,4 +148,28 @@ struct cityTextView: View {
         
     }
 }
+
+struct MainWeatherStatusView: View {
+    
+    var imagename: String
+    var temperature: String
+    //"
+    var body: some View{
+        //spacing is to crate space between each element inside the stack
+        VStack(spacing: 10){
+            Image(systemName: imagename )//we brought symbol from sfsymbol
+                .renderingMode(.original)// to bring multi color we use redering
+                .resizable()//to apply the size to fill full screen
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 80,height: 80)
+            
+            Text("\(temperature)°C")
+                .font(.system(size: 25,weight:.medium))
+                .foregroundColor(.white)
+        }
+        Spacer()
+    }
+}
+
+
 
