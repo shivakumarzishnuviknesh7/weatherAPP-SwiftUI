@@ -10,18 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            //Color(.blue).edgesIgnoringSafeArea(.all)
             
-            LinearGradient(
-                gradient: Gradient(colors: [ Color.red,
-                                             Color.blue,
-                                             //Color("lightBlue"), we can create custom color in asset and use it here
-                                             Color.yellow,
-                                             .white]),// to add colors
-                startPoint: .leading,// start left
-                endPoint: .trailing// to right
-            )
-            .edgesIgnoringSafeArea(.all)//Ignore the safe area and draw this view all the way to the very edges of the screen.
+            BackgroundGradientView(topColor: .blue, bottomColor: Color("lightBlue"))
+            
             //all elements are view in swift
             
             VStack {
@@ -30,13 +21,7 @@ struct ContentView: View {
                     .padding()
                 //Spacer()//it fill the entire space(modifier)
                 
-                Text("This is a weather app for your daily use ")
-                    .font(.system( size: 18,weight: .medium,design: .default))//styling font
-                    .foregroundColor(.white)//text color
-                    .background(Color.clear)//background color
-                    //.frame(width: 60,height: 10)// frame for this text
-                    .padding()
-                
+                cityTextView(cityNAme: "Hannover,Deutschland")
                 
                 //spacing is to crate space between each element inside the stack
                 VStack(spacing: 10){
@@ -92,6 +77,19 @@ struct ContentView: View {
 
                 }
                 Spacer()
+                
+                Button{
+                    print("tapped")// logic to happen after pressing button
+                }label: {
+                    Text("change day time")// name of button
+                        .frame(width: 200,height: 50)
+                        .background(Color.white)
+                        .font(.system(size: 20,weight: .bold,design: .default))
+                        .cornerRadius(10)// button corner
+                }
+                
+                Spacer()
+                //we have maximum of 10 view limit eg like spacer,hstack,v,button
 
             }
         }
@@ -124,6 +122,45 @@ struct WeatherDayView: View {
                 .font(.system(size: 15, weight: .medium))
                 .foregroundColor(.white)
         }
+    }
+}
+
+
+struct BackgroundGradientView: View {
+    var topColor: Color
+    var bottomColor: Color
+    
+    var body: some View {
+
+        LinearGradient(
+            /*
+            gradient: Gradient(colors: [ Color.red,
+                                         Color.blue,
+                                         //Color("lightBlue"), we can create custom color in asset and use it here
+                                         Color.yellow,
+                                         .white]),// to add colors
+            
+            */
+            gradient: Gradient(colors: [topColor,bottomColor]),// to add colors
+            startPoint: .leading,// start left
+            endPoint: .trailing// to right
+        )
+        .edgesIgnoringSafeArea(.all)//Ignore the safe area and draw this view all the way to the very edges of the screen.
+    }
+}
+
+struct cityTextView: View {
+    var cityNAme: String
+    
+    var body: some View {
+        
+        Text(cityNAme)
+            .font(.system( size: 18,weight: .medium,design: .default))//styling font
+            .foregroundColor(.white)//text color
+            .background(Color.clear)//background color
+            //.frame(width: 60,height: 10)// frame for this text
+            .padding()
+        
     }
 }
 
