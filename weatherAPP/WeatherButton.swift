@@ -16,7 +16,7 @@ struct WeatherButton: View {
     
     var body: some View{
         Text("\(title)")// name of button
-            .frame(width: 200,height: 50)
+            .frame(width: 200,height: 49)
             .background(backgroundColor)
             .foregroundColor(textColor)
             .font(.system(size: 20,weight: .bold,design: .default))

@@ -151,6 +151,8 @@ struct cityTextView: View {
 
 struct MainWeatherStatusView: View {
     
+    
+    
     var imagename: String
     var temperature: String
     //"
